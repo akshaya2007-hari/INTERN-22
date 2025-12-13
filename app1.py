@@ -4,7 +4,7 @@ import numpy as np
 
 st.set_page_config(page_title="Fuel Prediction App")
 
-with open("fuel11.pkl", "rb") as f:
+with open("fuel1.pkl", "rb") as f:
     model = pickle.load(f)
 
 st.title("⛽ Fuel Prediction App")
