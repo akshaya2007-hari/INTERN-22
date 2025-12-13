@@ -2,18 +2,16 @@ import streamlit as st
 import pickle
 import numpy as np
 
-# Load model
-with open("fuel11.pkl", "rb") as file:
-    model = pickle.load(file)
+st.set_page_config(page_title="Fuel Prediction App")
 
-st.title("Fuel Prediction App")
+with open("fuel11.pkl", "rb") as f:
+    model = pickle.load(f)
 
-# ONE input only
+st.title("⛽ Fuel Prediction App")
+
 x_value = st.number_input("Enter input value", min_value=0.0, step=0.1)
 
 if st.button("Predict"):
-    input_data = np.array([[x_value]])   # ONLY 1 FEATURE
+    input_data = np.array([[x_value]])
     prediction = model.predict(input_data)
-    st.success(f"Prediction: {prediction[0]:.2f}")
-else:
-    st.info("Enter a value and click Predict")
+    st.success(f"Prediction: {float(prediction[0]):.2f}")
