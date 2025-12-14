@@ -1,25 +1,24 @@
 import streamlit as st
 import pickle
 import numpy as np
+from sklearn.exceptions import NotFittedError
 
-st.set_page_config(page_title="Fuel Prediction App")
+st.title("Prediction App")
 
-# Load trained model
 with open("fuel(1).pkl", "rb") as f:
     model = pickle.load(f)
 
-st.title("⛽ Fuel Prediction App")
-
-x_value = st.number_input(
-    "Enter input value",
-    min_value=0.0,
-    step=0.1
-)
+x = st.number_input("Enter value")
 
 if st.button("Predict"):
-    input_data = np.array([[x_value]])
-    prediction = model.predict(input_data)
-    st.success(f"Prediction: {prediction[0]:.2f}")
+    try:
+        input_data = np.array([[x]])
+        prediction = model.predict(input_data)
+        st.success(f"Prediction: {prediction[0]}")
+    except NotFittedError:
+        st.error("❌ Model is not trained. Please retrain the model and upload a fitted .pkl file.")
+
+
 
 
 
