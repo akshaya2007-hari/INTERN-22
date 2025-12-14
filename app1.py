@@ -5,7 +5,7 @@ from sklearn.exceptions import NotFittedError
 
 st.title("Prediction App")
 
-with open("fuel(1).pkl", "rb") as f:
+with open("fuel(1).pkl", "wb") as f:
     model = pickle.load(f)
 
 x = st.number_input("Enter value")
@@ -17,6 +17,7 @@ if st.button("Predict"):
         st.success(f"Prediction: {prediction[0]}")
     except NotFittedError:
         st.error("❌ Model is not trained. Please retrain the model and upload a fitted .pkl file.")
+
 
 
 
