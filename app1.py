@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 from sklearn.exceptions import NotFittedError
 
-st.title("Prediction App")
+st.title(" Fuel Prediction App")
 
 # LOAD model (READ mode)
 with open("fuel (1).pkl", "rb") as f:
@@ -18,6 +18,7 @@ if st.button("Predict"):
         st.success(f"Prediction: {prediction[0]}")
     except NotFittedError:
         st.error("❌ Model is not trained. Please retrain and save the model correctly.")
+
 
 
 
